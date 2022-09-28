@@ -10,15 +10,16 @@ use Illuminate\Notifications\Notification;
 class EmailNotification extends Notification
 {
     use Queueable;
+    public $name;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($userName)
     {
-        //
+        $this->name=$userName;
     }
 
     /**
@@ -40,10 +41,18 @@ class EmailNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        # default template
+        /*
         return (new MailMessage)
                     ->line('The introduction to the notification.')
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
+        */
+
+        # custom view mail template
+        $user_name=$this->name;
+        return (new MailMessage)->view('mailTemplate',compact('user_name'));
+
     }
 
     /**
