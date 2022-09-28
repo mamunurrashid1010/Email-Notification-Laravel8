@@ -40,6 +40,9 @@
                 <div class="col-lg-12">
                     <h2 class="text-center" style="color: white">Email Notification Laravel 8</h2>
                     <button class="btn btn-info" style="font-size: 25px"><a href="{{url("/sendNotification")}}">Send Email</a></button>
+                </div><br>
+                <div class="col-lg-12">
+                    <button class="btn btn-info" style="font-size: 25px"><a href="{{url("/sendNotificationAllUser")}}">Send Email (all user)</a></button>
                 </div>
             </div>
         </div>
