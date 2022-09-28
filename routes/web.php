@@ -31,3 +31,11 @@ Route::get('/sendNotification', function () {
 
     echo "Email notification successfully send";
 });
+
+/** send email notification all user */
+Route::get('/sendNotificationAllUser',function (){
+   $users=User::all();
+   foreach($users as $user){
+       Notification::send($user, new EmailNotification($user->name));
+   }
+});
