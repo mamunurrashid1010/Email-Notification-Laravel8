@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Notifications\EmailNotification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/sendNotification', function () {
+    $user=User::first();
+    $user->notify(new EmailNotification());
+    echo "Email notification successfully send";
 });
