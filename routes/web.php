@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Notifications\EmailNotification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,12 @@ Route::get('/', function () {
 
 Route::get('/sendNotification', function () {
     $user=User::first();
+
+    # Using The Notifiable Trait
     $user->notify(new EmailNotification());
+
+    # Using The Notification Facade
+    Notification::send($user, new EmailNotification());
+
     echo "Email notification successfully send";
 });
